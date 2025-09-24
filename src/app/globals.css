@@ -1,26 +1,173 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #fefefe;
+  --foreground: #2c2c2c;
+  
+  /* Dreamy Purple & Pink Color Palette (Twitch-inspired) */
+  --lavender-light: #f3f4f6;
+  --lavender-soft: #e9d5ff;
+  --purple-light: #ddd6fe;
+  --purple-medium: #c084fc;
+  --purple-dark: #a855f7;
+  --purple-deep: #9333ea;
+  --pink-soft: #fce7f3;
+  --pink-medium: #f9a8d4;
+  --pink-bright: #ec4899;
+  --pink-deep: #db2777;
+  --violet-light: #ede9fe;
+  --violet-medium: #c4b5fd;
+  --text-dark: #1f2937;
+  --text-medium: #6b7280;
+  --text-light: #9ca3af;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fefefe;
+    --foreground: #1f2937;
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: 'Inter', ui-sans-serif, system-ui;
+}
+
+/* Custom font utility classes */
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-poppins), ui-sans-serif, system-ui;
+  }
+  
+  .font-accent {
+    font-family: var(--font-orbitron), ui-monospace, monospace;
+  }
+  
+  /* Glassmorphism effects for RecipeCard components */
+  .glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .hand-drawn-shadow {
+    filter: drop-shadow(2px 4px 8px rgba(147, 51, 234, 0.15)) drop-shadow(1px 2px 4px rgba(236, 72, 153, 0.1));
+  }
+  
+  .sketch-border {
+    position: relative;
+  }
+  
+  .sketch-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid currentColor;
+    border-radius: inherit;
+    opacity: 0.3;
+    transform: rotate(-0.5deg);
+  }
+  
+  /* Custom color utilities */
+  .bg-dreamy-gradient {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e9d5ff 25%, #ddd6fe 50%, #c084fc 75%, #a855f7 100%);
+  }
+  
+  .bg-purple-soft {
+    background-color: var(--purple-light);
+  }
+  
+  .bg-pink-soft {
+    background-color: var(--pink-soft);
+  }
+  
+  .text-purple-primary {
+    color: var(--purple-deep);
+  }
+  
+  .bg-purple-primary {
+    background-color: var(--purple-deep);
+  }
+  
+  .border-purple-primary {
+    border-color: var(--purple-deep);
+  }
+  
+  .text-pink-primary {
+    color: var(--pink-bright);
+  }
+  
+  .bg-pink-primary {
+    background-color: var(--pink-bright);
+  }
+  
+  .border-pink-primary {
+    border-color: var(--pink-bright);
+  }
+}
+
+.font-great-vibes {
+  font-family: "Great Vibes", cursive;
+}
+
+/* Typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', ui-sans-serif, system-ui;
+  font-weight: 600;
+}
+
+/* Smooth font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(180deg); 
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); 
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
